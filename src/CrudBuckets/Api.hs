@@ -1,24 +1,26 @@
 module CrudBuckets.Api (Api) where
 import Servant.API
+import Data.Aeson (Value)
 
-data Comment = Comment {
-  id :: String,
-  body :: String,
-  user :: User,
-  user_id :: String,
-  parent_id :: Maybe String,
-  parent_comment :: Maybe Comment,
-  child_comments :: [Comment],
-  post_id :: String
-                       }
 
-data User = User {
-  id :: String,
-  email :: String,
-  password :: String,
-  display_name :: String,
-  curernt_refresh_token :: Maybe String,
-  comments :: [Comment]
-                 }
+type Api =
+    -- curl -X GET http://localhost/users/userId-1
+    Capture "bucket" Text -- --> "users"
+    :> Capture "key" Text -- --> "userId-1"
+    :> Get '[JSON] Value
+  :<|>
+    -- curl -X PUT http://localhost/users/userId-1 --data-binary '<user-data>'
+    Capture "bucket" Text -- --> "users"
+    :> Capture "key" Text -- --> "userId-1"
+    :> ReqBody '[JSON] Value
+    :> PutNoContent
+  :<|>
+    -- curl -X GET http://localhost/users
+    Capture "bucket" Text -- --> "users"
+    :> Get '[JSON] [Text]
+  :<|>
+    -- curl -X PUT http://localhost/users --data-binary '<json-schema>'
+    Capture "bucket" Text -- --> "users"
+    :> ReqBody '[JsonSchemaCT] JsonSchema
+    :> PutNoContent
 
-type Api = "users" :> Get '[JSON] [User]
