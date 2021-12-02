@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.33.0.
+-- This file has been generated from package.yaml by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0458ea7d65f8080f955374600029d1e1a48dc5c3b55168eecef1c9ac5fee80e0
+-- hash: 925d83c0b97112d78f0b2a1a63fc153d307ad87baacf680d03abe62976da3ce6
 
 name:           crud-buckets
 version:        0.1.0.0
@@ -30,6 +30,7 @@ library
       CrudBuckets.Main
   other-modules:
       CrudBuckets.Api
+      CrudBuckets.Server
       Paths_crud_buckets
   hs-source-dirs:
       src
@@ -38,6 +39,8 @@ library
     , servant
     , servant-server
     , warp
+    , aeson
+    , text
   default-language: Haskell2010
 
 executable crud-buckets-exe
