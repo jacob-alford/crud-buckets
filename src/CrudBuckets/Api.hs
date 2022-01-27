@@ -4,7 +4,7 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module CrudBuckets.Api (Api) where
+module CrudBuckets.Api (Api, Schema) where
 import Servant.API
 import Data.Aeson (Value)
 import Data.Text (Text)
