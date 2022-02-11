@@ -42,6 +42,7 @@ library
     , aeson
     , text
     , containers
+    , mtl
   default-language: Haskell2010
 
 executable crud-buckets-exe
